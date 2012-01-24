@@ -30,10 +30,10 @@
 			'items'=>array(
 				array('label'=>'Home', 'url'=>array('/site/index')),
 				array('label'=>'DB', /*'url'=>array('/computers'), */'items'=>array(
-					array('label'=>'Computers', 'url'=>array('/computers')),
-					array('label'=>'Domains', 'url'=>array('/domain')),
-					array('label'=>'Images', 'url'=>array('/images')),
-					array('label'=>'Users', 'url'=>array('/users')))),
+					array('label'=>'Computers', 'url'=>array('/computers'), 'visible'=>false),
+					array('label'=>'Domains', 'url'=>array('/domain'), 'visible'=>false),
+					array('label'=>'Images', 'url'=>array('/images'), 'visible'=>false),
+					array('label'=>'Users', 'url'=>array('/users'), 'visible'=>false))),
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 				array('label'=>'Contact', 'url'=>array('/site/contact')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
