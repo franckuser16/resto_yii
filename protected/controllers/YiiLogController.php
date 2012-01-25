@@ -1,6 +1,6 @@
 <?php
 
-class ComputersController extends Controller
+class YiiLogController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -61,24 +61,21 @@ class ComputersController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Computers;
+		$model=new YiiLog;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Computers']))
+		if(isset($_POST['YiiLog']))
 		{
-			$model->attributes=$_POST['Computers'];
-			if($model->save()){
-				$this->redirect(array('view','id'=>$model->C_id));
-				Yii::log("Création d'un ordinateur", CLogger::LEVEL_INFO, "usage.ComputersController");
-			}
+			$model->attributes=$_POST['YiiLog'];
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
 		));
-
 	}
 
 	/**
@@ -93,11 +90,11 @@ class ComputersController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Computers']))
+		if(isset($_POST['YiiLog']))
 		{
-			$model->attributes=$_POST['Computers'];
+			$model->attributes=$_POST['YiiLog'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->C_id));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(
@@ -130,7 +127,7 @@ class ComputersController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Computers');
+		$dataProvider=new CActiveDataProvider('YiiLog');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -141,10 +138,10 @@ class ComputersController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Computers('search');
+		$model=new YiiLog('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Computers']))
-			$model->attributes=$_GET['Computers'];
+		if(isset($_GET['YiiLog']))
+			$model->attributes=$_GET['YiiLog'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -158,7 +155,7 @@ class ComputersController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=Computers::model()->findByPk($id);
+		$model=YiiLog::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -170,7 +167,7 @@ class ComputersController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='computers-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='yii-log-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
