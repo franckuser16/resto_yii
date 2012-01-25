@@ -80,5 +80,11 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'franckuser16@gmail.com',
+		//LDAP params
+		'ldap_host'=>'192.168.49.3',
+		//alternative 192.168.49.2
+		'ldap_port'=>'389',
+		//ldaps port:686
+		'ldap_domain'=>'ens-sfa.univ-poitiers.fr',
 	),
 );
