@@ -31,7 +31,7 @@ $this->breadcrumbs=array(
 		<?php echo $form->passwordField($model,'password'); ?>
 		<?php echo $form->error($model,'password'); ?>
 		<p class="hint">
-			Hint: You may login with <tt>user/tpinfo</tt> or <tt>admin/admin</tt>.
+			Hint: You may login with your University credentials.
 		</p>
 	</div>
 
