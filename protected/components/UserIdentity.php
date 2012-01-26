@@ -17,7 +17,7 @@ class UserIdentity extends CUserIdentity
 		 */
 		public function authenticate()
 		{
-				/*
+				
 				$users=array(
 					// username => password
 					'user'=>'tpinfo',
@@ -30,7 +30,7 @@ class UserIdentity extends CUserIdentity
 				else
 					$this->errorCode=self::ERROR_NONE;
 				return !$this->errorCode;
-				 */
+				/*
 				try{
 						$connection = ldap_connect(Yii::app()->params['ldap_host'], Yii::app()->params['ldap_port']);
 
@@ -59,6 +59,6 @@ class UserIdentity extends CUserIdentity
 				}
 
 				return !$this->errorCode;
-
+				 */
 		}
 }
