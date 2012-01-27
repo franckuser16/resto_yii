@@ -6,79 +6,114 @@
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 return array(
-	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'RestoYii',
+		'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
+		'name'=>'RestoYii',
 
-	// preloading 'log' component
-	'preload'=>array('log'),
+		// preloading 'log' component
+		'preload'=>array('log'),
 
-	// autoloading model and component classes
-	'import'=>array(
-		'application.models.*',
-		'application.components.*',
-	),
-
-	'modules'=>array(
-		// uncomment the following to enable the Gii tool
-		'gii'=>array(
-			'class'=>'system.gii.GiiModule',
-			'password'=>'tpinfo',
-		 	// If removed, Gii defaults to localhost only. Edit carefully to taste.
-			'ipFilters'=>array('127.0.0.1','::1','192.168.49.232'),
+		// autoloading model and component classes
+		'import'=>array(
+				'application.models.*',
+				'application.components.*',
 		),
-	),
 
-	// application components
-	'components'=>array(
-		'user'=>array(
-			// enable cookie-based authentication
-			'allowAutoLogin'=>true,
+		'modules'=>array(
+				// uncomment the following to enable the Gii tool
+				'gii'=>array(
+						'class'=>'system.gii.GiiModule',
+						'password'=>'tpinfo',
+						// If removed, Gii defaults to localhost only. Edit carefully to taste.
+						'ipFilters'=>array('127.0.0.1','::1','192.168.49.232','192.168.49.51'),
+				),
 		),
-		// uncomment the following to enable URLs in path-format
-		'urlManager'=>array(
-			'urlFormat'=>'path',
-			'rules'=>array(
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-			),
-		),
+
+		// application components
+		'components'=>array(
+				'user'=>array(
+						// enable cookie-based authentication
+						'allowAutoLogin'=>true,
+				),
+				// uncomment the following to enable URLs in path-format
+				'urlManager'=>array(
+						'urlFormat'=>'path',
+						'rules'=>array(
+								'<controller:\w+>/<id:\d+>'=>'<controller>/view',
+								'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+								'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+						),
+				),
 		/*
 		'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 		),
 		 */
-		// uncomment the following to use a MySQL database
-		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=drbl',
-			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => 'tpinfo',
-			'charset' => 'utf8',
-		),
-		'errorHandler'=>array(
-			// use 'site/error' action to display errors
-			'errorAction'=>'site/error',
-		),
-		'log'=>array(
-			'class'=>'CLogRouter',
-			'routes'=>array(
-				array(
-					'class'=>'CFileLogRoute',
-					'levels'=>'error, warning',
+				// uncomment the following to use a MySQL database
+				'db'=>array(
+						'connectionString' => 'mysql:host=localhost;dbname=drbl',
+						'emulatePrepare' => true,
+						'username' => 'root',
+						'password' => 'tpinfo',
+						'charset' => 'utf8',
 				),
-				// uncomment the following to show log messages on web pages
-				array(
-					'class'=>'CWebLogRoute',
+				'errorHandler'=>array(
+						// use 'site/error' action to display errors
+						'errorAction'=>'site/error',
 				),
-			),
-		),
-	),
+				'log'=>array(
+						'class'=>'CLogRouter',
+						'routes'=>array(
+								array(
+										'class'=>'CFileLogRoute',
+										'levels'=>'error, warning',
+								),
+								// uncomment the following to show log messages on web pages
+								array(
+										'class'=>'CDbLogRoute',
+										'categories'=>'usage.*',
+										'connectionID'=>'db',
+										'levels'=> CLogger::LEVEL_INFO,
+										'filter' => array(
+												'class' => 'CLogFilter',
+												//'prefixSession' => true,
+												'prefixUser' => true,
+												'logUser' => false,
+												'logVars' => array('_SERVER'),
+										),
+								),
+								array(
+										'class'=>'CWebLogRoute',
+										'showInFireBug'=>'true',
+								),
+								//log des actions des utilisateurs
+								array(
+										'class'=>'CFileLogRoute',
+										'logFile'=>'usage.log',
+										'categories'=>'usage.*',
+										'levels'=> CLogger::LEVEL_INFO,
+										'filter' => array(
+												'class' => 'CLogFilter',
+												//'prefixSession' => true,
+												'prefixUser' => true,
+												'logUser' => true,
+												'logVars' => array('_SERVER'),
+										),
 
-	// application-level parameters that can be accessed
-	// using Yii::app()->params['paramName']
-	'params'=>array(
-		// this is used in contact page
-		'adminEmail'=>'franckuser16@gmail.com',
-	),
+								),
+						),
+				),
+
+				// application-level parameters that can be accessed
+				// using Yii::app()->params['paramName']
+				'params'=>array(
+						// this is used in contact page
+						'adminEmail'=>'franckuser16@gmail.com',
+						//LDAP params
+						'ldap_host'=>'192.168.49.3',
+						//alternative 192.168.49.2
+						'ldap_port'=>'389',
+						//ldaps port:686
+						'ldap_domain'=>'ens-sfa.univ-poitiers.fr',
+				),
+		),
 );
