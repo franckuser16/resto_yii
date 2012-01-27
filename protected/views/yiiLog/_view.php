@@ -13,7 +13,8 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('logtime')); ?>:</b>
-	<?php echo CHtml::encode($data->logtime); ?>
+	<!--formattage de la date depuis le timestamp-->
+	<?php echo CHtml::encode(date("c", $data->logtime)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('message')); ?>:</b>

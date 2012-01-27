@@ -38,11 +38,11 @@ class YiiLog extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('logtime', 'numerical', 'integerOnly'=>true),
-			array('level, category', 'length', 'max'=>128),
+			//array('level, category', 'length', 'max'=>128),
 			array('message', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, level, category, logtime, message', 'safe', 'on'=>'search'),
+			array(/*'id, level, category, */'logtime, message', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -82,9 +82,9 @@ class YiiLog extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('level',$this->level,true);
-		$criteria->compare('category',$this->category,true);
+		//$criteria->compare('id',$this->id);
+		//$criteria->compare('level',$this->level,true);
+		//$criteria->compare('category',$this->category,true);
 		$criteria->compare('logtime',$this->logtime);
 		$criteria->compare('message',$this->message,true);
 

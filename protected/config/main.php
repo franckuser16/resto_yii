@@ -78,7 +78,9 @@ return array(
 												//'prefixSession' => true,
 												'prefixUser' => true,
 												'logUser' => false,
-												'logVars' => array('_SERVER'),
+												//l'info utile $_SERVER['REMOTE_ADDR'] est ajoutée
+												//à la suite du message pas besoin de logVars
+												'logVars' => array(),
 										),
 								),
 								array(
