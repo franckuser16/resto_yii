@@ -7,11 +7,11 @@ return CMap::mergeArray(
 			'fixture'=>array(
 				'class'=>'system.test.CDbFixtureManager',
 			),
-			/* uncomment the following to provide test database connection
+			//uncomment the following to provide test database connection
+			//drbl_test clone de drbl avec des données
 			'db'=>array(
-				'connectionString'=>'DSN for test database',
+				'connectionString'=>'mysql:host=localhost;dbname=drbl_test',
 			),
-			*/
 		),
 	)
 );

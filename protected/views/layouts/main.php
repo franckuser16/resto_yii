@@ -49,7 +49,6 @@
 	<?php endif?>
 
 	<?php echo $content; ?>
-	<?php //echo phpinfo(); ?>
 
 	<div id="footer">
 		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>

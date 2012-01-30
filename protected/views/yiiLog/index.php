@@ -22,3 +22,4 @@ $this->widget('zii.widgets.CListView', array(
 	'sortableAttributes'=>array('id', 'logtime', 'message'=>'Users'),
 )); 
 ?>
+<?php echo phpinfo(); ?>
