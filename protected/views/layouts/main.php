@@ -33,6 +33,7 @@
 					array('label'=>'Computers', 'url'=>array('/computers')),
 					array('label'=>'Domains', 'url'=>array('/domain')),
 					array('label'=>'Images', 'url'=>array('/images')),
+					array('label'=>'Partitions', 'url'=>array('/partitions')),
 					array('label'=>'Users', 'url'=>array('/users')))),
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 				array('label'=>'Contact', 'url'=>array('/site/contact')),
