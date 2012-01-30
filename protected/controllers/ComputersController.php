@@ -70,8 +70,10 @@ class ComputersController extends Controller
 		{
 			$model->attributes=$_POST['Computers'];
 			if($model->save()){
+					Yii::log($_SERVER['REMOTE_ADDR'].' Création d\'un ordinateur
+					('.$model->C_name.' salle '.$model->C_room.' MAC:'.$model->C_mac_addr.')',
+					CLogger::LEVEL_INFO, "usage.ComputersController");
 				$this->redirect(array('view','id'=>$model->C_id));
-				Yii::log("Création d'un ordinateur", CLogger::LEVEL_INFO, "usage.ComputersController");
 			}
 		}
 
@@ -89,6 +91,9 @@ class ComputersController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		$old_C_name = $model->C_name;
+		$old_C_room = $model->C_room;
+		$old_C_mac_addr = $model->C_mac_addr;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -97,6 +102,10 @@ class ComputersController extends Controller
 		{
 			$model->attributes=$_POST['Computers'];
 			if($model->save())
+					Yii::log($_SERVER['REMOTE_ADDR'].' Modification d\'un ordinateur
+					(ancien: '.$old_C_name.' salle '.$old_C_room.' MAC: '.$old_C_mac_addr.' 
+					nouveau: '.$model->C_name.' salle '.$model->C_room.' MAC:'.$model->C_mac_addr.')',
+					 CLogger::LEVEL_INFO, "usage.ComputersController");
 				$this->redirect(array('view','id'=>$model->C_id));
 		}
 
@@ -114,8 +123,13 @@ class ComputersController extends Controller
 	{
 		if(Yii::app()->request->isPostRequest)
 		{
+			$model=$this->loadModel($id);
+
 			// we only allow deletion via POST request
-			$this->loadModel($id)->delete();
+			Yii::log($_SERVER['REMOTE_ADDR'].' Suppression d\'un ordinateur 
+			('.$model->C_name.' salle '.$model->C_room.' MAC:'.$model->C_mac_addr.')',
+			CLogger::LEVEL_INFO, "usage.ComputersController");
+			$model->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))

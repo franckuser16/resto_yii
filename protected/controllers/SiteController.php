@@ -86,11 +86,9 @@ class SiteController extends Controller
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login()){
-				Yii::log('Login réussi depuis '.$_SERVER['REMOTE_ADDR'], CLogger::LEVEL_INFO, "usage.SiteController");
+				Yii::log($_SERVER['REMOTE_ADDR'].' Login réussi', CLogger::LEVEL_INFO, "usage.SiteController");
 				$this->redirect(Yii::app()->user->returnUrl);
 			}
-			else
-				Yii::log('Login échec depuis '.$_SERVER['REMOTE_ADDR'], CLogger::LEVEL_INFO, "usage.SiteController");
 		}
 		// display the login form
 		$this->render('login',array('model'=>$model));

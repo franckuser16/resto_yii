@@ -70,6 +70,9 @@ class DomainController extends Controller
 		{
 			$model->attributes=$_POST['Domain'];
 			if($model->save())
+				Yii::log($_SERVER['REMOTE_ADDR'].' Création d\'un domaine
+				('.$model->D_name.')',
+				CLogger::LEVEL_INFO, "usage.DomainController");
 				$this->redirect(array('view','id'=>$model->D_id));
 		}
 
@@ -94,6 +97,9 @@ class DomainController extends Controller
 		{
 			$model->attributes=$_POST['Domain'];
 			if($model->save())
+				Yii::log($_SERVER['REMOTE_ADDR'].' Modification d\'un domaine
+				('.$model->D_name.')',
+				CLogger::LEVEL_INFO, "usage.DomainController");
 				$this->redirect(array('view','id'=>$model->D_id));
 		}
 
@@ -111,8 +117,13 @@ class DomainController extends Controller
 	{
 		if(Yii::app()->request->isPostRequest)
 		{
+			$model=$this->loadModel($id);
+
 			// we only allow deletion via POST request
-			$this->loadModel($id)->delete();
+			Yii::log($_SERVER['REMOTE_ADDR'].' Suppression d\'un domaine
+			('.$model->D_name.')',
+			CLogger::LEVEL_INFO, "usage.DomainController");
+			$model->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
