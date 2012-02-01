@@ -70,6 +70,9 @@ class ImagesController extends Controller
 		{
 			$model->attributes=$_POST['Images'];
 			if($model->save())
+				Yii::log($_SERVER['REMOTE_ADDR'].' Création d\'une image 
+				('.$model->I_name.' disc '.$model->I_disk_name.' description: '.$model->I_description')',
+				CLogger::LEVEL_INFO, "usage.ImagesController");
 				$this->redirect(array('view','id'=>$model->I_id));
 		}
 
@@ -86,6 +89,9 @@ class ImagesController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		$old_I_name=$model->I_name;
+		$old_I_disk_name=$model->I_disk_name;
+		$old_I_description=$model->I_description;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -94,6 +100,10 @@ class ImagesController extends Controller
 		{
 			$model->attributes=$_POST['Images'];
 			if($model->save())
+				Yii::log($_SERVER['REMOTE_ADDR'].' Modification d\'une image 
+				(ancien: '.$old_I_name.' disc '.$old_I_disk_name.' description: '.$old_I_description. '
+				nouveau: '.$model->I_name.' disc '.$model->I_disk_name.' description: '.$model->I_description')',
+				CLogger::LEVEL_INFO, "usage.ImagesController");
 				$this->redirect(array('view','id'=>$model->I_id));
 		}
 
@@ -111,8 +121,13 @@ class ImagesController extends Controller
 	{
 		if(Yii::app()->request->isPostRequest)
 		{
+			$model=$this->loadModel($id);
+
 			// we only allow deletion via POST request
-			$this->loadModel($id)->delete();
+			Yii::log($_SERVER['REMOTE_ADDR'].' Suppression d\'une image 
+			('.$model->I_name.' disc '.$model->I_disk_name.' description: '.$model->I_description')',
+			CLogger::LEVEL_INFO, "usage.ImagesController");
+			$model->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))

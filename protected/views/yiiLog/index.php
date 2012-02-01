@@ -11,7 +11,15 @@ $this->menu=array(
 
 <h1>Yii Logs</h1>
 
-<?php $this->widget('zii.widgets.CListView', array(
+<?php 
+//default sort: id
+$dataProvider->sort->defaultOrder='id ASC';
+
+$this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_view',
-)); ?>
+	//sort by id, or logtime or message i.e. users (message beginning)
+	'sortableAttributes'=>array('id', 'logtime', 'message'=>'Users'),
+)); 
+?>
+<?php echo phpinfo(); ?>

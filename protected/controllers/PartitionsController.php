@@ -70,6 +70,9 @@ class PartitionsController extends Controller
 		{
 			$model->attributes=$_POST['Partitions'];
 			if($model->save())
+				Yii::log($_SERVER['REMOTE_ADDR'].' Création d\'une partition 
+				('.$model->P_name.' description '.$model->P_description.' image:'.$model->P_id_image.')',
+				CLogger::LEVEL_INFO, "usage.PartitionsController");
 				$this->redirect(array('view','id'=>$model->P_id));
 		}
 
@@ -86,6 +89,9 @@ class PartitionsController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		$old_P_name=$model->P_name;
+		$old_P_description=$model->P_description;
+		$olde_P_id_image=$model->P_id_image;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -94,6 +100,10 @@ class PartitionsController extends Controller
 		{
 			$model->attributes=$_POST['Partitions'];
 			if($model->save())
+				Yii::log($_SERVER['REMOTE_ADDR'].' Modification d\'une partition 
+				(ancien: '.$old_P_name.' description '.$old_P_description.' image: '.$olde_P_id_image.' 
+				nouveau: '.$model->P_name.' description '.$model->P_description.' image:'.$model->P_id_image.')',
+				CLogger::LEVEL_INFO, "usage.PartitionsController");
 				$this->redirect(array('view','id'=>$model->P_id));
 		}
 
@@ -111,8 +121,13 @@ class PartitionsController extends Controller
 	{
 		if(Yii::app()->request->isPostRequest)
 		{
+			$model=$this->loadModel($id);
+
 			// we only allow deletion via POST request
-			$this->loadModel($id)->delete();
+			Yii::log($_SERVER['REMOTE_ADDR'].' Suppression d\'une partition 
+			('.$model->P_name.' description '.$model->P_description.' image:'.$model->P_id_image.')',
+			CLogger::LEVEL_INFO, "usage.PartitionsController");
+			$model->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
