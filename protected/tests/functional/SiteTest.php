@@ -1,13 +1,21 @@
 <?php
 
-class SiteTest extends WebTestCase
+class ComputersTest extends WebTestCase
 {
 	public function testIndex()
 	{
 		$this->open('');
-		$this->assertTextPresent('Welcome');
+		$this->assertTextPresent('Computers');
 	}
 
+	public function testCreate()
+	{
+		$this->open('computers/create');
+		$this->assertTextPresent('login');
+		//$this->click("//input[@value='Submit']");
+		//$this->assertTextPresent('Username cannot be blank');
+	}
+	/*
 	public function testContact()
 	{
 		$this->open('?r=site/contact');
@@ -44,4 +52,5 @@ class SiteTest extends WebTestCase
 		$this->clickAndWait('link=Logout (demo)');
 		$this->assertTextPresent('Login');
 	}
+	 */
 }
