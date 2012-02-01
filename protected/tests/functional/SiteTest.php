@@ -11,7 +11,7 @@ class ComputersTest extends WebTestCase
 	public function testCreate()
 	{
 		$this->open('computers/create');
-		$this->assertTextPresent('login');
+		$this->assertTextPresent('Login');
 		//$this->click("//input[@value='Submit']");
 		//$this->assertTextPresent('Username cannot be blank');
 	}
