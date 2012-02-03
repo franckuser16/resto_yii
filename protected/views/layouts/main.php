@@ -35,6 +35,7 @@
 					array('label'=>'Images', 'url'=>array('/images')),
 					array('label'=>'Partitions', 'url'=>array('/partitions')),
 					array('label'=>'Users', 'url'=>array('/users')))),
+				array('label'=>'Settings', 'url'=>array('/settings')),
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 				array('label'=>'Contact', 'url'=>array('/site/contact')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),

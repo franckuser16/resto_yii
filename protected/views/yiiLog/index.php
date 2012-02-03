@@ -25,5 +25,5 @@ $this->widget('zii.widgets.CListView', array(
 <?php 
 Yii::import('system.vendors.SymfonyComponents.YAML.*');
 $array = sfYaml::load(/*Yii::app()->params['basePath'].*/'/home/user/Sites/resto_yii/protected/config/config.yml');
-print_r($array['log']['db']['conservation time']);
+print_r($array['components']['db']['username']);
 echo phpinfo(); ?>

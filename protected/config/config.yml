@@ -1,1 +1,14 @@
-name:   'bob'
+components:
+        db:
+                connectionString:   'mysql:host=localhost;dbname=drbl'
+                emulatePrepare:     true
+                username:           root
+                password:           tpinfo
+                charset:            utf8
+
+params:
+        adminEmail:                 franckuser16@gmail.com
+        LDAP:
+                host:               192.168.49.3
+                port:               389
+                domain:             ens-sfa.univ-poitiers.fr

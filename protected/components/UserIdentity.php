@@ -17,7 +17,7 @@ class UserIdentity extends CUserIdentity
 		 */
 		public function authenticate()
 		{
-				
+
 				$users=array(
 					// username => password
 					'user'=>'tpinfo',
@@ -32,14 +32,14 @@ class UserIdentity extends CUserIdentity
 				return !$this->errorCode;
 				/*
 				try{
-						$connection = ldap_connect(Yii::app()->params['ldap_host'], Yii::app()->params['ldap_port']);
+						$connection = ldap_connect(Yii::app()->params['LDAP']['host'], Yii::app()->params['LDAP']['port']);
 
 						ldap_set_option($connection, LDAP_OPT_PROTOCOL_VERSION, 3);
 						ldap_set_option($connection, LDAP_OPT_REFERRALS, 0);
 
 						if ($connection) {
 
-								$bind = ldap_bind($connection, $this->username.'@'.Yii::app()->params['ldap_domain'], $this->password);
+								$bind = ldap_bind($connection, $this->username.'@'.Yii::app()->params['LDAP']['domain'], $this->password);
 								if ($bind) {
 										$this->errorCode=self::ERROR_NONE;
 								} 
