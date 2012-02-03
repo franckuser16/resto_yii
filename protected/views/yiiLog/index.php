@@ -22,4 +22,8 @@ $this->widget('zii.widgets.CListView', array(
 	'sortableAttributes'=>array('id', 'logtime', 'message'=>'Users'),
 )); 
 ?>
-<?php echo phpinfo(); ?>
+<?php 
+Yii::import('system.vendors.SymfonyComponents.YAML.*');
+$array = sfYaml::load(/*Yii::app()->params['basePath'].*/'/home/user/Sites/resto_yii/protected/config/config.yml');
+print_r($array['log']['db']['conservation time']);
+echo phpinfo(); ?>
