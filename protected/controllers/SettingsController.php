@@ -52,18 +52,20 @@ class SettingsController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Settings']))
+		if(isset($_POST['SettingsForm']))
 		{
 			
-			print_r($_POST['Settings']);
-			$model->attributes=$_POST['Settings'];
-			if($model->save())
-			//	$this->redirect(array('index','id'=>$model->id));
+			$model->attributes=$_POST['SettingsForm'];
+			if($model->validate())
+			{
+				$this->saveToYaml($model);
+				$this->redirect(array('index'));
+			}
 		}
 
 		$this->render('update',array(
 				'model'=>$model,
-	));
+		));
 	}
 
 	/**
@@ -87,5 +89,12 @@ class SettingsController extends Controller
 			Yii::app()->end();
 		}
 	}
-}
 
+	public function saveToYaml($model)
+	{
+			Yii::import('system.vendors.SymfonyComponents.YAML.*');
+			$dumper = new sfYamlDumper();
+			$yaml = $dumper->dump($model->attributes, 3);
+			file_put_contents('/home/user/Sites/resto_yii/protected/config/config.yml', $yaml);
+	}
+}

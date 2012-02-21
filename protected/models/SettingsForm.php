@@ -6,22 +6,28 @@
  */
 class SettingsForm extends CFormModel
 {
-	public $connectionString;
-	public $emulatePrepare;
-	public $username;
-	public $password;
-	public $charset;
+	public $components;
+	public $params;
 
 	function __construct()
 	{
 		parent::__construct();
 		Yii::import('system.vendors.SymfonyComponents.YAML.*');
 		$settings = sfYaml::load(/*Yii::app()->params['basePath'].*/'/home/user/Sites/resto_yii/protected/config/config.yml');
-		$this->connectionString = $settings['components']['db']['connectionString'];
-		$this->emulatePrepare   = $settings['components']['db']['emulatePrepare'];
-		$this->username         = $settings['components']['db']['username'];
-		$this->password         = $settings['components']['db']['password'];
-		$this->charset          = $settings['components']['db']['charset'];
+
+		$this->components 	= 	array( 	"db" => array( 	"connectionString" 	=> $settings['components']['db']['connectionString'],
+														"emulatePrepare" 	=> $settings['components']['db']['emulatePrepare'],
+														"username" 			=> $settings['components']['db']['username'],
+														"password" 			=> $settings['components']['db']['password'],
+														"charset" 			=> $settings['components']['db']['charset']
+												),
+								);
+		
+		$this->params 		= 	array( 	"adminEmail" 	=> $settings['params']['adminEmail'],
+										"ldap" 			=> array( 	"host" 		=> $settings['params']['ldap']['host'],
+																	"port" 		=> $settings['params']['ldap']['port'],
+																	"domain" 	=> $settings['params']['ldap']['domain'])
+								);
 	}
 
 	/**
@@ -32,7 +38,8 @@ class SettingsForm extends CFormModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('connectionString, emulatePrepare, username, password, charset', 'required'),
+			array('connectionString, emulatePrepare, username, password, charset, adminEmail', 'required'),
+			array('adminEmail', 'email'),
 		);
 	}
 
@@ -43,8 +50,8 @@ class SettingsForm extends CFormModel
 	{
 			return array(
 			'connectionString' => 'Connection string',
+			'adminEmail' => 'adresse email administrateur',
 		);
 	}
 
 }
-
