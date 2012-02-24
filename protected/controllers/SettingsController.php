@@ -54,13 +54,12 @@ class SettingsController extends Controller
 
 		if(isset($_POST['SettingsForm']))
 		{
-			
-			$model->attributes=$_POST['SettingsForm'];
-			if($model->validate())
+			print_r(CMap::mergeArray($model->attributes, $_POST['SettingsForm']));
+			/*$model->attributes=CMap::mergeArray($model->attributes, $_POST['SettingsForm']);
+			if($model->save($_POST['SettingsForm']))
 			{
-				$this->saveToYaml($model);
 				$this->redirect(array('index'));
-			}
+			}*/
 		}
 
 		$this->render('update',array(
@@ -88,13 +87,5 @@ class SettingsController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
-	}
-
-	public function saveToYaml($model)
-	{
-			Yii::import('system.vendors.SymfonyComponents.YAML.*');
-			$dumper = new sfYamlDumper();
-			$yaml = $dumper->dump($model->attributes, 3);
-			file_put_contents('/home/user/Sites/resto_yii/protected/config/config.yml', $yaml);
 	}
 }

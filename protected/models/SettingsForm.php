@@ -50,8 +50,25 @@ class SettingsForm extends CFormModel
 	{
 			return array(
 			'connectionString' => 'Connection string',
-			'adminEmail' => 'adresse email administrateur',
+			'adminEmail' => 'Adresse email administrateur',
 		);
+	}
+
+	//methode perso equiv. d'ActiveRecord
+	public function save($formSubmission)
+	{
+			Yii::import('system.vendors.SymfonyComponents.YAML.*');
+
+			//comme dans ActiveRecord
+			this.validate();
+
+			//for each key in $formSubmission
+			//if this.attributes.contains[key]
+			//this.attributes[key] = $formSubmission[key];
+
+			$dumper = new sfYamlDumper();
+			$yaml = $dumper->dump($model->attributes, 3);
+			file_put_contents('/home/user/Sites/resto_yii/protected/config/config.yml', $yaml);
 	}
 
 }
