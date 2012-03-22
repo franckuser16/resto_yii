@@ -50,11 +50,11 @@ return array(
 		 */
 				// uncomment the following to use a MySQL database
 				'db'=>array(
-						'connectionString' => 'mysql:host=localhost;dbname=drbl',
-						'emulatePrepare' => true,
-						'username' => 'root',
-						'password' => 'tpinfo',
-						'charset' => 'utf8',
+						'connectionString' => Yii::app()->params['db']['connectionString'],
+						'emulatePrepare' => Yii::app()->params['db']['emulatePrepare'],
+						'username' => Yii::app()->params['db']['username'],
+						'password' => Yii::app()->params['db']['password'],
+						'charset' => Yii::app()->params['db']['charset'],
 				),
 				'errorHandler'=>array(
 						// use 'site/error' action to display errors
@@ -116,6 +116,13 @@ return array(
 								//ldaps port:686
 								'port'=>'389',
 								'domain'=>'ens-sfa.univ-poitiers.fr',
+						),
+						'db'=> array(
+								'connectionString' => 'mysql:host=localhost;dbname=drbl',
+								'emulatePrepare' => true,
+								'username' => 'root',
+								'password' => 'tpinfo',
+								'charset' => 'utf8',
 						),
 				),
 		),
