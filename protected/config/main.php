@@ -5,10 +5,10 @@
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
-return array(
+return CMap::mergeArray(
+	array(
 		'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 		'name'=>'RestoYii',
-
 		// preloading 'log' component
 		'preload'=>array('log'),
 
@@ -50,11 +50,11 @@ return array(
 		 */
 				// uncomment the following to use a MySQL database
 				'db'=>array(
-						'connectionString' => Yii::app()->params['db']['connectionString'],
-						'emulatePrepare' => Yii::app()->params['db']['emulatePrepare'],
-						'username' => Yii::app()->params['db']['username'],
-						'password' => Yii::app()->params['db']['password'],
-						'charset' => Yii::app()->params['db']['charset'],
+						'connectionString' => 'mysql:host=localhost;dbname=drbl',
+						'emulatePrepare' => 'true',
+						'username' => 'root',
+						'password' => 'tpinfo',
+						'charset' => 'utf8',
 				),
 				'errorHandler'=>array(
 						// use 'site/error' action to display errors
@@ -108,6 +108,8 @@ return array(
 				// application-level parameters that can be accessed
 				// using Yii::app()->params['paramName']
 				'params'=>array(
+						//application name
+						'name'=>'RestoYii',
 						// this is used in contact page
 						'adminEmail'=>'franckuser16@gmail.com',
 						'LDAP'=> array(
@@ -117,13 +119,8 @@ return array(
 								'port'=>'389',
 								'domain'=>'ens-sfa.univ-poitiers.fr',
 						),
-						'db'=> array(
-								'connectionString' => 'mysql:host=localhost;dbname=drbl',
-								'emulatePrepare' => true,
-								'username' => 'root',
-								'password' => 'tpinfo',
-								'charset' => 'utf8',
-						),
 				),
 		),
+	),
+	require(dirname(__FILE__).'/settings.php')
 );

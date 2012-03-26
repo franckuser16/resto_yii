@@ -8,6 +8,7 @@ class SettingsForm extends CFormModel
 {
 	public $components;
 	public $params;
+	public $name;
 
 	function __construct()
 	{
@@ -21,13 +22,15 @@ class SettingsForm extends CFormModel
 														"password" 			=> $settings['components']['db']['password'],
 														"charset" 			=> $settings['components']['db']['charset']
 												),
-								);
+										);
 		
 		$this->params 		= 	array( 	"adminEmail" 	=> $settings['params']['adminEmail'],
 										"ldap" 			=> array( 	"host" 		=> $settings['params']['ldap']['host'],
 																	"port" 		=> $settings['params']['ldap']['port'],
-																	"domain" 	=> $settings['params']['ldap']['domain'])
+																	"domain" 	=> $settings['params']['ldap']['domain']),
 								);
+
+		$this->name 		=   $settings['name'];
 	}
 
 	/**
@@ -60,15 +63,19 @@ class SettingsForm extends CFormModel
 			Yii::import('system.vendors.SymfonyComponents.YAML.*');
 
 			//comme dans ActiveRecord
-			this.validate();
+			//$this.validate();
 
 			//for each key in $formSubmission
 			//if this.attributes.contains[key]
 			//this.attributes[key] = $formSubmission[key];
 
+			print_r($this->attributes);
+			print_r(CMap::mergeArray($this->attributes, $formSubmission));
+			$this->attributes=CMap::mergeArray($this->attributes, $formSubmission);
+			print_r($this->attributes);
 			$dumper = new sfYamlDumper();
-			$yaml = $dumper->dump($model->attributes, 3);
-			file_put_contents('/home/user/Sites/resto_yii/protected/config/config.yml', $yaml);
+			$yaml = $dumper->dump(CMap::mergeArray($this->attributes, $formSubmission), 3);
+			return file_put_contents('/home/user/Sites/resto_yii/protected/config/config.yml', $yaml);
 	}
 
 }

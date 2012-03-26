@@ -10,6 +10,12 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'nom application'); ?>
+		<?php echo $form->textField($model,'name',array('value'=>$model->name, 'size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'nom application'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'password'); ?>
 		<?php echo $form->textField($model,'components[db][password]',array('value'=>$model->components['db']['password'], 'size'=>60,'maxlength'=>128)); ?>
 		<?php echo $form->error($model,'password'); ?>
@@ -28,4 +34,3 @@
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
-

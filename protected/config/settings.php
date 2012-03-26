@@ -9,8 +9,4 @@
 //importation du composant Symfony YAML
 Yii::import('system.vendors.SymfonyComponents.YAML.*');
 
-return CMap::mergeArray(
-		require(dirname(__FILE__).'/main.php'),
-		//création d'un tableau PHP à partir du fichier YAML config.yml
-		sfYaml::load(dirname(__FILE__).'/config.yml')
-);
+return sfYaml::load(dirname(__FILE__).'/config.yml');

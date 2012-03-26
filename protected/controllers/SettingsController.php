@@ -55,11 +55,11 @@ class SettingsController extends Controller
 		if(isset($_POST['SettingsForm']))
 		{
 			print_r(CMap::mergeArray($model->attributes, $_POST['SettingsForm']));
-			/*$model->attributes=CMap::mergeArray($model->attributes, $_POST['SettingsForm']);
+			//$model->attributes=CMap::mergeArray($model->attributes, $_POST['SettingsForm']);
 			if($model->save($_POST['SettingsForm']))
 			{
 				$this->redirect(array('index'));
-			}*/
+			}
 		}
 
 		$this->render('update',array(
