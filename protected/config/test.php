@@ -7,8 +7,7 @@ return CMap::mergeArray(
 			'fixture'=>array(
 				'class'=>'system.test.CDbFixtureManager',
 			),
-			//uncomment the following to provide test database connection
-			//drbl_test clone de drbl avec des données
+			//drbl_test drbl clone filled with data
 			'db'=>array(
 				'connectionString'=>'mysql:host=localhost;dbname=drbl_test',
 			),
