@@ -19,7 +19,6 @@ return CMap::mergeArray(
 		),
 
 		'modules'=>array(
-				// uncomment the following to enable the Gii tool
 				'gii'=>array(
 						'class'=>'system.gii.GiiModule',
 						'password'=>'tpinfo',
@@ -34,7 +33,6 @@ return CMap::mergeArray(
 						// enable cookie-based authentication
 						'allowAutoLogin'=>true,
 				),
-				// uncomment the following to enable URLs in path-format
 				'urlManager'=>array(
 						'urlFormat'=>'path',
 						'rules'=>array(
@@ -43,12 +41,6 @@ return CMap::mergeArray(
 								'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 						),
 				),
-		/*
-		'db'=>array(
-			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
-		),
-		 */
-				// uncomment the following to use a MySQL database
 				'db'=>array(
 						'connectionString' => 'mysql:host=localhost;dbname=drbl',
 						'emulatePrepare' => 'true',
@@ -77,17 +69,13 @@ return CMap::mergeArray(
 												//'prefixSession' => true,
 												'prefixUser' => true,
 												'logUser' => false,
-												//l'info utile $_SERVER['REMOTE_ADDR'] est ajoutée
-												//à la suite du message pas besoin de logVars
 												'logVars' => array(),
 										),
 								),
-								// uncomment the following to show log messages on web pages
 								array(
 										'class'=>'CWebLogRoute',
 										'showInFireBug'=>'true',
 								),
-								//log des actions des utilisateurs
 								array(
 										'class'=>'CFileLogRoute',
 										'logFile'=>'usage.log',
