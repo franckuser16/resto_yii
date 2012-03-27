@@ -1,0 +1,71 @@
+/opt/drbl/sbin/dcs: --help: invalid option
+
+Usage: /opt/drbl/sbin/dcs [OPTION] MODE [MODE2]
+
+OPTION
+
+-l, --language INDEX Set the language to be shown by index number:
+       [0|en_US.UTF-8]: English,
+       [1|zh_TW.BIG5]: Traditional Chinese (Big5) - Taiwan,
+       [2|zh_TW.UTF-8]: Traditional Chinese (UTF-8, Unicode) - Taiwan
+       [a|ask]: Prompt to ask the language index
+-h, --host [IP_LIST|MAC_LIST] Instead of all DRBL clients, assign some DRBL clients (IP_LIST or MAC_LIST) to be processed, if IP_LIST or MAC_LIST is not set, a dialog menu will be shown so that the target DRBL client(s) can be selected. The IP_LIST is like: "192.168.0.1 192.168.0.2", and the MAC_LIST is like "00:50:56:01:02:01 00:50:56:01:02:02". NOTE!!! You must put " " before and after the IP_LIST or MAC_LIST!
+-nl, --no-list-host   Set all clients' mode (This is default)
+ -d0, --dialog         Use dialog
+ -d1, --Xdialog        Use Xdialog
+ -d2, --whiptail       Use whiptail
+ -d3, --gdialog        Use gdialog
+ -d4, --kdialog        Use kdialog
+
+MODE:
+
+remote-linux-gra      Client machine will boot from DRBL server,
+                      and enter graphic mode, for powerful client.
+remote-linux-txt      Client machine will boot from DRBL server,
+                      and enter text mode, for powerful client.
+terminal              Remote display Linux, terminal mode.
+remote-memtest        Remote boot to run memtest86
+remote-fdos           Remote boot to run FreeDOS
+clonezilla-start      Start Clonezilla mode
+clonezilla-stop       Stop the clonezilla mode
+local                 Client machine will boot from local (now PXE only)
+reboot                Reboot DRBL clients now
+shutdown              Shutdown DRBL clients now
+Wake-on-LAN           Turn on DRBL clients by Wake-on-LAN now
+netinstall            Let clients to install Linux distribution via network (PXE/etherboot)
+
+MODE2:
+
+Based on MODE, assign the 2nd level mode:
+
+For MODE=clonezilla-start, available MODE2:
+
+save-disk: Clonezilla save disk mode
+restore-disk: Clonezilla restore disk Mode
+save-parts: Clonezilla save partitions mode
+restore-parts: Clonezilla restore partitions mode
+
+For MODE=more, available MODE2:
+
+switch-pxe-menu       Switch DRBL client menus
+switch-pxe-bg-mode    Switch PXE Linux background
+drbl-mode             Switch diskless linux mode
+clonezilla-mode       Switch clonezilla mode
+login-switch          Switch DRBL client login mode
+switch-drbl-serv      Start, stop or restart DRBL related services in DRBL server
+client-reautologin    Force to restart client autologin
+clean-autologin-account Delete all autologin accounts
+re-deploy             Re-deploy files to clients, i.e. update the files of server to clients.
+clean-dhcpd-lease     Force to reset DHCP IP address leases
+
+If no argument is specified, a dialog will appear to let you choose the mode!
+
+EXAMPLE
+
+  To turn off the local and memtest boot menues of clients, run:
+  /opt/drbl/sbin/dcs -nl more switch-pxe-menu '-i local -i memtest hide'
+  To switch client's PXE boot menu as graphic mode, run:
+  /opt/drbl/sbin/dcs -nl more switch-pxe-bg-mode graphic
+  To restart drbl-related service, run:
+  /opt/drbl/sbin/dcs -nl more switch-drbl-serv restart
+

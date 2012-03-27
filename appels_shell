@@ -1,0 +1,30 @@
+contenu/images.php:				$disk=shell_exec("cat /home/partimag/$image_name/disk");
+								$nb_parts=shell_exec("cat /home/partimag/$image_name/parts | wc -w");
+								$part_name=shell_exec("cat /home/partimag/$image_name/parts | tr -s ' ' '=' | cut -d= -f$j");
+								shell_exec("sudo rm -rf /home/partimag/$directory_name");
+
+contenu/restore.php:			shell_exec("sudo /opt/drbl/sbin/drbl-ocs -b -e1 auto -e2 -x -j1 -j2 -k -o1 -p $postaction -l fr_FR.UTF-8 startparts restore $image_name $all_parts_selected > /dev/null 2>&1 &") ;
+								shell_exec("sudo /opt/drbl/sbin/drbl-ocs -b -e1 auto -e2 -x -j1 -j2 -k -o1 -p $postaction --clients-to-wait $nb_host $max_time_to_wait -l fr_FR.UTF-8 startparts multicast_restore $image_name $all_parts_selected > /dev/null 2>&1 &") ;
+								shell_exec("sleep 10 && wakeonlan -i ".$addr_broadcast." ".$all_mac_addr."  > /dev/null 2>&1 &");				
+								shell_exec("sudo /opt/drbl/sbin/drbl-ocs -b -e1 auto -e2 -x -j1 -j2 -o1 -p $postaction -l fr_FR.UTF-8 startdisk restore $image_name $disk_name  > /dev/null 2>&1 &") ;
+								shell_exec("sudo /opt/drbl/sbin/drbl-ocs -b -e1 auto -e2 -x -j1 -j2 -o1 -p $postaction --clients-to-wait $nb_host $max_time_to_wait -l fr_FR.UTF-8 startdisk multicast_restore $image_name $disk_name  > /dev/null 2>&1 &") ;
+								shell_exec("sleep 10 && wakeonlan -i ".$addr_broadcast." ".$all_mac_addr."  > /dev/null 2>&1 &");
+
+contenu/actions_distance.php:	shell_exec("sudo ".$var_www."/scripts/ssh_action.sh -h \"$host_list\" -u $admin_account $action_windows > /dev/null 2>&1 &");
+								shell_exec("sudo ".$var_www."/scripts/ssh_action.sh -h \"$host_list\" -u $admin_account $action_linux > /dev/null 2>&1 &");
+
+contenu/adhesion_domain.php:	shell_exec("sudo ".$var_www."/scripts/ssh_action.sh -h \"$host_list\" -u $admin_account  /bin/autologin.sh $domain $domain_admin $domain_password > /dev/null 2>&1 &");
+
+contenu/accueil.php:			shell_exec("sudo /opt/drbl/sbin/dcs -nl clonezilla-stop > /dev/null 2>&1 &");
+
+contenu/save.php:				shell_exec("sudo /opt/drbl/sbin/drbl-ocs -b -q2 -j2 -rm-win-swap-hib -p poweroff -z1p -i 1000000 -l fr_FR.UTF-8 startdisk save ".$image_name." ".$disk_name." > /dev/null 2>&1 &") ;
+								shell_exec("sudo /opt/drbl/sbin/drbl-ocs -b -q2 -j2 -rm-win-swap-hib -p poweroff -z1p -i 1000000 -l fr_FR.UTF-8 startparts save ".$image_name." ".$parts_name."  > /dev/null 2>&1 &");
+								shell_exec("sleep 10 && wakeonlan -i ".$addr_broadcast." ".$mac_computer."  > /dev/null 2>&1 &");
+
+contenu/salles.php:				shell_exec("sudo touch /var/lock/restonux.lock"); // Arrete le script s'il est déjà en exécution
+								shell_exec("rm -f ".$var_www."/macadr-eth*");
+								shell_exec("sudo rm -f /var/lock/restonux.lock"); // On supprime les anciens fichiers
+								shell_exec("sudo ".$var_www."/scripts/drbl-collect-mac $interface_drbl > /dev/null 2>&1 &"); // On démarre le script qui collect les addr Mac en Pxe
+								shell_exec("sudo touch /var/lock/restonux.lock"); // On arrete le script qui collecte les adresses Mac
+								shell_exec("sudo /opt/drbl/sbin/drbl-gen-ssi-files -n -x  > /dev/null 2>&1 &");
+								shell_exec("wakeonlan -i ".$addr_broadcast." ".$computer_mac."  > /dev/null 2>&1 &");
