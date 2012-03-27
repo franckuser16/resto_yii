@@ -70,7 +70,7 @@ class DomainController extends Controller
 		{
 			$model->attributes=$_POST['Domain'];
 			if($model->save())
-				Yii::log($_SERVER['REMOTE_ADDR'].' Création d\'un domaine
+				Yii::log($_SERVER['REMOTE_ADDR'].' Domain created 
 				('.$model->D_name.')',
 				CLogger::LEVEL_INFO, "usage.DomainController");
 				$this->redirect(array('view','id'=>$model->D_id));
@@ -97,7 +97,7 @@ class DomainController extends Controller
 		{
 			$model->attributes=$_POST['Domain'];
 			if($model->save())
-				Yii::log($_SERVER['REMOTE_ADDR'].' Modification d\'un domaine
+				Yii::log($_SERVER['REMOTE_ADDR'].' Domain updated 
 				('.$model->D_name.')',
 				CLogger::LEVEL_INFO, "usage.DomainController");
 				$this->redirect(array('view','id'=>$model->D_id));
@@ -120,7 +120,7 @@ class DomainController extends Controller
 			$model=$this->loadModel($id);
 
 			// we only allow deletion via POST request
-			Yii::log($_SERVER['REMOTE_ADDR'].' Suppression d\'un domaine
+			Yii::log($_SERVER['REMOTE_ADDR'].' Domain deleted 
 			('.$model->D_name.')',
 			CLogger::LEVEL_INFO, "usage.DomainController");
 			$model->delete();

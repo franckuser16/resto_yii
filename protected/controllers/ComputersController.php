@@ -70,8 +70,8 @@ class ComputersController extends Controller
 		{
 			$model->attributes=$_POST['Computers'];
 			if($model->save()){
-					Yii::log($_SERVER['REMOTE_ADDR'].' Création d\'un ordinateur
-					('.$model->C_name.' salle '.$model->C_room.' MAC:'.$model->C_mac_addr.')',
+					Yii::log($_SERVER['REMOTE_ADDR'].' Computer created 
+					('.$model->C_name.' room '.$model->C_room.' MAC:'.$model->C_mac_addr.')',
 					CLogger::LEVEL_INFO, "usage.ComputersController");
 				$this->redirect(array('view','id'=>$model->C_id));
 			}
@@ -102,9 +102,9 @@ class ComputersController extends Controller
 		{
 			$model->attributes=$_POST['Computers'];
 			if($model->save())
-					Yii::log($_SERVER['REMOTE_ADDR'].' Modification d\'un ordinateur
-					(ancien: '.$old_C_name.' salle '.$old_C_room.' MAC: '.$old_C_mac_addr.' 
-					nouveau: '.$model->C_name.' salle '.$model->C_room.' MAC:'.$model->C_mac_addr.')',
+					Yii::log($_SERVER['REMOTE_ADDR'].' Computer updated 
+					(old: '.$old_C_name.' room '.$old_C_room.' MAC: '.$old_C_mac_addr.' 
+					new: '.$model->C_name.' room '.$model->C_room.' MAC:'.$model->C_mac_addr.')',
 					 CLogger::LEVEL_INFO, "usage.ComputersController");
 				$this->redirect(array('view','id'=>$model->C_id));
 		}
@@ -126,8 +126,8 @@ class ComputersController extends Controller
 			$model=$this->loadModel($id);
 
 			// we only allow deletion via POST request
-			Yii::log($_SERVER['REMOTE_ADDR'].' Suppression d\'un ordinateur 
-			('.$model->C_name.' salle '.$model->C_room.' MAC:'.$model->C_mac_addr.')',
+			Yii::log($_SERVER['REMOTE_ADDR'].' Computer deleted 
+			('.$model->C_name.' room '.$model->C_room.' MAC:'.$model->C_mac_addr.')',
 			CLogger::LEVEL_INFO, "usage.ComputersController");
 			$model->delete();
 
