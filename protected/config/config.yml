@@ -11,4 +11,4 @@ params:
     host: 192.168.49.3
     port: 389
     domain: ens-sfa.univ-poitiers.fr
-name: RestoYo
+name: Restobob

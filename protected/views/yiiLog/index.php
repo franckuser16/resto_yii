@@ -4,7 +4,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Create YiiLog', 'url'=>array('create')),
+	//array('label'=>'Create YiiLog', 'url'=>array('create')),
 	array('label'=>'Manage YiiLog', 'url'=>array('admin')),
 );
 ?>
@@ -13,7 +13,7 @@ $this->menu=array(
 
 <?php 
 //default sort: id
-$dataProvider->sort->defaultOrder='id ASC';
+$dataProvider->sort->defaultOrder='id DESC';
 
 $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
@@ -23,7 +23,4 @@ $this->widget('zii.widgets.CListView', array(
 )); 
 ?>
 <?php 
-Yii::import('system.vendors.SymfonyComponents.YAML.*');
-$array = sfYaml::load(/*Yii::app()->params['basePath'].*/'/home/user/Sites/resto_yii/protected/config/config.yml');
-print_r($array['components']['db']['username']);
 echo phpinfo(); ?>

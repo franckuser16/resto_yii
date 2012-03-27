@@ -29,12 +29,11 @@
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'DB', 'url'=>array('/computers'), 'activateItems'=>true, 'items'=>array(
+				array('label'=>'DB', /*'url'=>array('/computers'),*/ 'activateItems'=>true, 'items'=>array(
 					array('label'=>'Computers', 'url'=>array('/computers')),
 					array('label'=>'Domains', 'url'=>array('/domain')),
 					array('label'=>'Images', 'url'=>array('/images')),
-					array('label'=>'Partitions', 'url'=>array('/partitions')),
-					array('label'=>'Users', 'url'=>array('/users')))),
+					array('label'=>'Partitions', 'url'=>array('/partitions')))),
 				array('label'=>'Settings', 'url'=>array('/settings')),
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 				array('label'=>'Contact', 'url'=>array('/site/contact')),

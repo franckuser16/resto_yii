@@ -6,7 +6,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'List YiiLog', 'url'=>array('index')),
-	array('label'=>'Create YiiLog', 'url'=>array('create')),
+	//array('label'=>'Create YiiLog', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

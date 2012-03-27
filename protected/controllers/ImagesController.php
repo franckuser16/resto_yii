@@ -71,7 +71,7 @@ class ImagesController extends Controller
 			$model->attributes=$_POST['Images'];
 			if($model->save())
 				Yii::log($_SERVER['REMOTE_ADDR'].' Création d\'une image 
-				('.$model->I_name.' disc '.$model->I_disk_name.' description: '.$model->I_description')',
+				('.$model->I_name.' disc '.$model->I_disk_name.' description: '.$model->I_description.')',
 				CLogger::LEVEL_INFO, "usage.ImagesController");
 				$this->redirect(array('view','id'=>$model->I_id));
 		}
@@ -102,7 +102,7 @@ class ImagesController extends Controller
 			if($model->save())
 				Yii::log($_SERVER['REMOTE_ADDR'].' Modification d\'une image 
 				(ancien: '.$old_I_name.' disc '.$old_I_disk_name.' description: '.$old_I_description. '
-				nouveau: '.$model->I_name.' disc '.$model->I_disk_name.' description: '.$model->I_description')',
+				nouveau: '.$model->I_name.' disc '.$model->I_disk_name.' description: '.$model->I_description.')',
 				CLogger::LEVEL_INFO, "usage.ImagesController");
 				$this->redirect(array('view','id'=>$model->I_id));
 		}
@@ -125,7 +125,7 @@ class ImagesController extends Controller
 
 			// we only allow deletion via POST request
 			Yii::log($_SERVER['REMOTE_ADDR'].' Suppression d\'une image 
-			('.$model->I_name.' disc '.$model->I_disk_name.' description: '.$model->I_description')',
+			('.$model->I_name.' disc '.$model->I_disk_name.' description: '.$model->I_description.')',
 			CLogger::LEVEL_INFO, "usage.ImagesController");
 			$model->delete();
 

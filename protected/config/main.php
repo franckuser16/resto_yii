@@ -67,7 +67,6 @@ return CMap::mergeArray(
 										'class'=>'CFileLogRoute',
 										'levels'=>'error, warning',
 								),
-								// uncomment the following to show log messages on web pages
 								array(
 										'class'=>'CDbLogRoute',
 										'categories'=>'usage.*',
@@ -83,6 +82,7 @@ return CMap::mergeArray(
 												'logVars' => array(),
 										),
 								),
+								// uncomment the following to show log messages on web pages
 								array(
 										'class'=>'CWebLogRoute',
 										'showInFireBug'=>'true',
