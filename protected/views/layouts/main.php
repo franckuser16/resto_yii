@@ -29,7 +29,9 @@
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'DB', /*'url'=>array('/computers'),*/ 'activateItems'=>true, 'items'=>array(
+				array('label'=>'Actions', 'url'=>array('/actions')),
+				array('label'=>'Datas', /*'url'=>array('/computers'),*/ 'activateItems'=>true, 'items'=>array(
+					array('label'=>'Logs', 'url'=>array('/yiiLog')),
 					array('label'=>'Computers', 'url'=>array('/computers')),
 					array('label'=>'Domains', 'url'=>array('/domain')),
 					array('label'=>'Images', 'url'=>array('/images')),

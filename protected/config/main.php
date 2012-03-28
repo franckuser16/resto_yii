@@ -110,5 +110,6 @@ return CMap::mergeArray(
 				),
 		),
 	),
+	//PHP array filled with user settings
 	require(dirname(__FILE__).'/settings.php')
 );

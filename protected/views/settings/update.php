@@ -5,6 +5,7 @@ $this->breadcrumbs=array(
 );
 $this->menu=array(
 	array('label'=>'List settings', 'url'=>array('index')),
+	array('label'=>'Actions', 'url'=>array('actions/index')),
 );
 ?>
 
