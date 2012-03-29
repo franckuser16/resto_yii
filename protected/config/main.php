@@ -56,14 +56,16 @@ return CMap::mergeArray(
 						'class'=>'CLogRouter',
 						'routes'=>array(
 								array(
-										'class'=>'CFileLogRoute',
-										'levels'=>'error, warning',
+										'class'=>'CEmailLogRoute',
+										'categories'=>'usage.*',
+										'levels'=> CLogger::LEVEL_INFO,
+										'emails'=>array('franckuser16@gmail.com'),
 								),
 								array(
 										'class'=>'CDbLogRoute',
-										'categories'=>'usage.*',
 										'connectionID'=>'db',
-										'levels'=> CLogger::LEVEL_INFO,
+										'categories'=>'usage.*',
+										'levels'=> 'CLogger::LEVEL_INFO CLogger::LEVEL_TRACE',
 										'filter' => array(
 												'class' => 'CLogFilter',
 												//'prefixSession' => true,
@@ -80,7 +82,7 @@ return CMap::mergeArray(
 										'class'=>'CFileLogRoute',
 										'logFile'=>'usage.log',
 										'categories'=>'usage.*',
-										'levels'=> CLogger::LEVEL_INFO,
+										'levels'=> 'CLogger::LEVEL_INFO CLogger::LEVEL_TRACE',
 										'filter' => array(
 												'class' => 'CLogFilter',
 												//'prefixSession' => true,
@@ -93,20 +95,36 @@ return CMap::mergeArray(
 						),
 				),
 
-				// application-level parameters that can be accessed
-				// using Yii::app()->params['paramName']
-				'params'=>array(
-						//application name
-						'name'=>'RestoYii',
+		),
+		// application-level parameters that can be accessed
+		// using Yii::app()->params['paramName']
+		'params'=>array(
+				'drbl'=> array(
+						'save'=> array(
+								'partition'=>'',
+								'imageName'=>'',
+								'detect'=>'',
+						),
+						'restore' 	=> array(
+								'imageName'=>'',
+								'partition'=>'',
+								'wakeUpBefore'=>'',
+								'afterRestore'=>'',
+								'limitBandwitdh'=>'',
+								'startNotReady'=>'',
+						),
+				),
+				'ldap'=> array(
+						//alternative 192.168.49.2
+						'host'=>'192.168.49.3',
+						//ldaps port:686
+						'port'=>'389',
+						'domain'=>'ens-sfa.univ-poitiers.fr',
+				),
+				'administration'=>array(
+						'adminLogin'=>'admin',
 						// this is used in contact page
 						'adminEmail'=>'franckuser16@gmail.com',
-						'LDAP'=> array(
-								//alternative 192.168.49.2
-								'host'=>'192.168.49.3',
-								//ldaps port:686
-								'port'=>'389',
-								'domain'=>'ens-sfa.univ-poitiers.fr',
-						),
 				),
 		),
 	),

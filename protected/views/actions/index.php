@@ -41,11 +41,14 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 </div><!-- search-form -->
 
 <?php 
+//using temp var to sort the CGridView provider on C_room
+$gridProvider = $model->search();
+$gridProvider->sort->defaultOrder='C_room ASC';
 
 $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'computers-grid',
 	'selectableRows'=>2,
-	'dataProvider'=>$model->search(),
+	'dataProvider'=>$gridProvider,
 	'filter'=>$model,
 	'columns'=>array(
 		'C_room',

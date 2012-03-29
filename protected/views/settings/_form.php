@@ -14,20 +14,20 @@
 	<h3>Save</h3>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'partition(s) to save'); ?>
-		<?php echo $form->textField($model,'components[drbl][save][partition]',array('value'=>''/*$model->components['drbl']['save']['partition']*/, 'size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->labelEx($model,'partition(s) to save (full disc if empty)'); ?>
+		<?php echo $form->textField($model,'params[drbl][save][partition]',array('value'=>$model->params['drbl']['save']['partition'], 'size'=>60,'maxlength'=>128)); ?>
 		<?php echo $form->error($model,'partition(s) to save'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'image name'); ?>
-		<?php echo $form->textField($model,'components[drbl][save][imageName]',array('value'=>''/*$model->components['drbl']['save']['imageName']*/, 'size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->textField($model,'params[drbl][save][imageName]',array('value'=>$model->params['drbl']['save']['imageName'], 'size'=>60,'maxlength'=>128)); ?>
 		<?php echo $form->error($model,'imageName'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'auto detect image'); ?>
-		<?php echo $form->textField($model,'components[drbl][save][detect]',array('value'=>''/*$model->components['drbl']['save']['detect']*/, 'size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->checkBox($model,'params[drbl][save][detect]',array('value'=>$model->params['drbl']['save']['detect'], 'size'=>60,'maxlength'=>128)); ?>
 		<?php echo $form->error($model,'detect'); ?>
 	</div>
 
@@ -35,17 +35,47 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'image name'); ?>
-		<?php echo $form->textField($model,'components[drbl][restore][imageName]',array('value'=>''/*$model->components['drbl']['restore']['imageName']*/, 'size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->dropDownList($model,'params[drbl][restore][imageName]',array('value'=>$model->params['drbl']['restore']['imageName'], 'size'=>60,'maxlength'=>128)); ?>
 		<?php echo $form->error($model,'imageName'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'partition(s) to save'); ?>
-		<?php echo $form->textField($model,'components[drbl][restore][partition]',array('value'=>''/*$model->components['drbl']['restore']['partition']*/, 'size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->labelEx($model,'partition(s) to restore (full disc if empty)'); ?>
+		<?php echo $form->textField($model,'params[drbl][restore][partition]',array('value'=>$model->params['drbl']['restore']['partition'], 'size'=>60,'maxlength'=>128)); ?>
 		<?php echo $form->error($model,'partition(s) to save'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'wake up before restoration'); ?>
+		<?php echo $form->checkBox($model,'params[drbl][restore][wakeUpBefore]',array('value'=>$model->params['drbl']['restore']['wakeUpBefore'], 'size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'wakeUpBefore'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'after restoration'); ?>
+		<?php echo $form->dropDownList($model,'params[drbl][restore][afterRestore]',array('value'=>$model->params['drbl']['restore']['afterRestore'], 'size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'afterRestore'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'limit bandwidth (no limit if empty)'); ?>
+		<?php echo $form->textField($model,'params[drbl][restore][limitBandwitdh]',array('value'=>$model->params['drbl']['restore']['limitBandwidth'], 'size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'limit bandwidth'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'start even if not ready'); ?>
+		<?php echo $form->checkBox($model,'params[drbl][restore][startNotReady]',array('value'=>$model->params['drbl']['restore']['startNotReady'], 'size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'start even if not ready'); ?>
+	</div>
+
 	<h2>Log</h2>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'start even if not ready'); ?>
+		<?php echo $form->checkBox($model,'params[drbl][restore][startNotReady]',array('value'=>$model->params['drbl']['restore']['startNotReady'], 'size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'start even if not ready'); ?>
+	</div>
 
 	<h2>DB</h2>
 
@@ -87,11 +117,17 @@
 		<?php echo $form->error($model,'domain'); ?>
 	</div>
 
-	<h2>Contact</h2>
+	<h2>Administration</h2>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'adminLogin'); ?>
+		<?php echo $form->textField($model,'params[administration][adminLogin]',array('value'=>$model->params['administration']['adminLogin'], 'size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'adminLogin'); ?>
+	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'adminEmail'); ?>
-		<?php echo $form->textField($model,'params[adminEmail]',array('value'=>$model->params['adminEmail'], 'size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->textField($model,'params[administration][adminEmail]',array('value'=>$model->params['administration']['adminEmail'], 'size'=>60,'maxlength'=>128)); ?>
 		<?php echo $form->error($model,'adminEmail'); ?>
 	</div>
 

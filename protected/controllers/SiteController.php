@@ -58,7 +58,7 @@ class SiteController extends Controller
 			if($model->validate())
 			{
 				$headers="From: {$model->email}\r\nReply-To: {$model->email}";
-				mail(Yii::app()->params['adminEmail'],$model->subject,$model->body,$headers);
+				mail(Yii::app()->params['administration']['adminEmail'],$model->subject,$model->body,$headers);
 				Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
 				$this->refresh();
 			}
@@ -86,7 +86,7 @@ class SiteController extends Controller
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login()){
-				Yii::log($_SERVER['REMOTE_ADDR'].' Login réussi', CLogger::LEVEL_INFO, "usage.SiteController");
+				Yii::log($_SERVER['REMOTE_ADDR'].' Login réussi', CLogger::LEVEL_TRACE, "usage.SiteController");
 				$this->redirect(Yii::app()->user->returnUrl);
 			}
 		}

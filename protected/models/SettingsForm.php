@@ -8,7 +8,6 @@ class SettingsForm extends CFormModel
 {
 	public $components;
 	public $params;
-	public $name;
 
 	function __construct()
 	{
@@ -16,21 +15,31 @@ class SettingsForm extends CFormModel
 		Yii::import('system.vendors.SymfonyComponents.YAML.*');
 		$settings = sfYaml::load(/*Yii::app()->params['basePath'].*/'/home/user/Sites/resto_yii/protected/config/config.yml');
 
-		$this->components 	= 	array( 	"db" => array( 	"connectionString" 	=> $settings['components']['db']['connectionString'],
-														"emulatePrepare" 	=> $settings['components']['db']['emulatePrepare'],
-														"username" 			=> $settings['components']['db']['username'],
-														"password" 			=> $settings['components']['db']['password'],
-														"charset" 			=> $settings['components']['db']['charset']
+		$this->components 	= 	array( 	'db' => array( 	'connectionString' 	=> $settings['components']['db']['connectionString'],
+														'emulatePrepare' 	=> $settings['components']['db']['emulatePrepare'],
+														'username' 			=> $settings['components']['db']['username'],
+														'password' 			=> $settings['components']['db']['password'],
+														'charset' 			=> $settings['components']['db']['charset']
 												),
 										);
 		
-		$this->params 		= 	array( 	"adminEmail" 	=> $settings['params']['adminEmail'],
-										"ldap" 			=> array( 	"host" 		=> $settings['params']['ldap']['host'],
-																	"port" 		=> $settings['params']['ldap']['port'],
-																	"domain" 	=> $settings['params']['ldap']['domain']),
-								);
+		$this->params 		= 	array( 	'drbl' 			=> array( 	'save' 		=> array( 	'partition' 	=> $settings['params']['drbl']['save']['partition'],
+																							'imageName' 	=> $settings['params']['drbl']['save']['imageName'],
+																							'detect' 		=> $settings['params']['drbl']['save']['detect']),
+																	'restore' 	=> array( 	'imageName' 	=> $settings['params']['drbl']['restore']['imageName'],
+																							'partition' 	=> $settings['params']['drbl']['restore']['partition'],
+																							'wakeUpBefore'	=> $settings['params']['drbl']['restore']['wakeUpBefore'],
+																							'afterRestore'	=> $settings['params']['drbl']['restore']['afterRestore'],
+																							'limitBandwidth'=> $settings['params']['drbl']['restore']['limitBandwidth'],
+																							'startNotReady' => $settings['params']['drbl']['restore']['startNotReady']),),
 
-		$this->name 		=   $settings['name'];
+										'ldap' 			=> array( 	'host' 		=> $settings['params']['ldap']['host'],
+																	'port' 		=> $settings['params']['ldap']['port'],
+																	'domain' 	=> $settings['params']['ldap']['domain']),
+
+										'administration'=> array( 	'adminEmail'=> $settings['params']['administration']['adminEmail'],
+																	'adminLogin'=> $settings['params']['administration']['adminLogin']),
+								);
 	}
 
 	/**

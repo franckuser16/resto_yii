@@ -1,10 +1,8 @@
 <?php
 $this->breadcrumbs=array(
-	'settings'=>array('index'),
-	'Update',
+	'Settings',
 );
 $this->menu=array(
-	array('label'=>'List settings', 'url'=>array('index')),
 	array('label'=>'Actions', 'url'=>array('actions/index')),
 );
 ?>

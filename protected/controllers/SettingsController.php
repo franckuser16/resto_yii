@@ -72,7 +72,10 @@ class SettingsController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$this->render('index',array(
+		$model=new SettingsForm;
+
+		$this->render('update',array(
+				'model'=>$model,
 		));
 	}
 
