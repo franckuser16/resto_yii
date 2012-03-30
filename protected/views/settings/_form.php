@@ -9,6 +9,19 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'administration settings'); ?>
+		<?php echo $form->checkBox($model, 
+									'params[administration][adminSettings]', 
+									array( 	
+											'submit'=>'settings/adminSettings', 
+											'params'=>array('adminSettingsCheckbox'=>0,
+									),
+									'value'=>$model->params['administration']['adminSettings'],												
+									)); ?>
+		<?php echo $form->error($model,'administration settings'); ?>
+	</div>
+
 	<h2>DRBL/Clonezilla</h2>
 
 	<h3>Save</h3>
@@ -35,7 +48,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'image name'); ?>
-		<?php echo $form->dropDownList($model,'params[drbl][restore][image]', CHtml::listData(Images::model()->findAll(), 'I_name', 'I_description'), array('empty'=>'select Image')); ?>
+		<?php echo $form->dropDownList($model,'params[drbl][restore][image]', CHtml::listData(Images::model()->findAll(), 'I_name', 'I_name'), array('empty'=>'select Image')); ?>
 		<?php echo $form->error($model,'imageName'); ?>
 	</div>
 

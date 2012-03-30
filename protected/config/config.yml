@@ -8,16 +8,16 @@ components:
 params:
   drbl:
     save:
-      partition:
-      imageName:
-      detect:
+      partition: null
+      imageName: null
+      detect: null
     restore:
-      imageName:
-      partition:
-      wakeUpBefore:
-      afterRestore:
-      limitBandwidth:
-      startNotReady:
+      imageName: null
+      partition: null
+      wakeUpBefore: null
+      afterRestore: null
+      limitBandwidth: null
+      startNotReady: null
   ldap:
     host: 192.168.49.3
     port: 389
@@ -25,3 +25,4 @@ params:
   administration:
     adminEmail: franckuser16@gmail.com
     adminLogin: admin
+    adminSettings: '0'

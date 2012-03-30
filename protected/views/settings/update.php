@@ -10,5 +10,9 @@ $this->menu=array(
 <h1>Change settings</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
-<?php echo $this->renderPartial('_adminForm', array('model'=>$model)); ?>
-
+<?php 
+if(Yii::app()->params['administration']['adminSettings'])
+{
+	echo $this->renderPartial('_adminForm', array('model'=>$model));
+}
+?>

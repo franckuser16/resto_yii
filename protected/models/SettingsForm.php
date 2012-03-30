@@ -38,7 +38,8 @@ class SettingsForm extends CFormModel
 																	'domain' 	=> $settings['params']['ldap']['domain']),
 
 										'administration'=> array( 	'adminEmail'=> $settings['params']['administration']['adminEmail'],
-																	'adminLogin'=> $settings['params']['administration']['adminLogin']),
+																	'adminLogin'=> $settings['params']['administration']['adminLogin'],
+																	'adminSettings'=> $settings['params']['administration']['adminSettings']),
 								);
 	}
 
@@ -52,6 +53,7 @@ class SettingsForm extends CFormModel
 		return array(
 			array('connectionString, emulatePrepare, username, password, charset, adminEmail', 'required'),
 			array('adminEmail', 'email'),
+			array('adminSettings', 'boolean'),
 		);
 	}
 
@@ -78,12 +80,12 @@ class SettingsForm extends CFormModel
 			//if this.attributes.contains[key]
 			//this.attributes[key] = $formSubmission[key];
 
-			print_r($this->attributes);
-			print_r(CMap::mergeArray($this->attributes, $formSubmission));
+			//print_r($this->attributes);
+			//print_r(CMap::mergeArray($this->attributes, $formSubmission));
 			$this->attributes=CMap::mergeArray($this->attributes, $formSubmission);
-			print_r($this->attributes);
+			//print_r($this->attributes);
 			$dumper = new sfYamlDumper();
-			$yaml = $dumper->dump(CMap::mergeArray($this->attributes, $formSubmission), 3);
+			$yaml = $dumper->dump(CMap::mergeArray($this->attributes, $formSubmission), 4);
 			return file_put_contents('/home/user/Sites/resto_yii/protected/config/config.yml', $yaml);
 	}
 

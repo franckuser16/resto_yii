@@ -76,7 +76,7 @@ return CMap::mergeArray(
 								),
 								array(
 										'class'=>'CWebLogRoute',
-										'showInFireBug'=>'true',
+										//'showInFireBug'=>'true',
 								),
 								array(
 										'class'=>'CFileLogRoute',
@@ -125,6 +125,7 @@ return CMap::mergeArray(
 						'adminLogin'=>'admin',
 						// this is used in contact page
 						'adminEmail'=>'franckuser16@gmail.com',
+						'adminSettings'=>'false',
 				),
 		),
 	),

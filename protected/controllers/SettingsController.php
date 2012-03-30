@@ -27,11 +27,11 @@ class SettingsController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index'),
+				'actions'=>array('index', 'update'),
 				'users'=>array('@'),
 			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('update'),
+			array('allow', // allow admin user to perform 'admin' actions
+				'actions'=>array('adminSettings'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -77,6 +77,28 @@ class SettingsController extends Controller
 		$this->render('update',array(
 				'model'=>$model,
 		));
+	}
+
+	/**
+	 * show administation settings
+	 */
+	public function actionAdminSettings()
+	{
+		$model=new SettingsForm;
+
+		if(Yii::app()->request->isPostRequest)
+		{
+				if(isset($_POST['adminSettingsCheckbox']))
+				{
+						if($model->save(array('params'=>array('administration'=>array('adminSettings'=>$_POST['adminSettingsCheckbox'])))))
+						{
+								$this->redirect('index');
+						}
+				}
+		}
+		else
+				throw new CHttpException(400,
+						Yii::t('app', 'Invalid request. Please do not repeat this request again.'));
 	}
 
 	/**
