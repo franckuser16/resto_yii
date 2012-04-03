@@ -64,7 +64,7 @@ class SettingsForm extends CFormModel
 	{
 			return array(
 			'connectionString' => 'Connection string',
-			'adminEmail' => 'Adresse email administrateur',
+			'adminEmail' => 'Administrator email',
 		);
 	}
 

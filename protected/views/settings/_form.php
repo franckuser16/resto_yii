@@ -9,19 +9,6 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'administration settings'); ?>
-		<?php echo $form->checkBox($model, 
-									'params[administration][adminSettings]', 
-									array( 	
-											'submit'=>'settings/adminSettings', 
-											'params'=>array('adminSettingsCheckbox'=>0,
-									),
-									'value'=>$model->params['administration']['adminSettings'],												
-									)); ?>
-		<?php echo $form->error($model,'administration settings'); ?>
-	</div>
-
 	<h2>DRBL/Clonezilla</h2>
 
 	<h3>Save</h3>

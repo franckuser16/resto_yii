@@ -8,7 +8,6 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<h2>Administration</h2>
 
 	<h3>Log</h3>
 
@@ -58,7 +57,7 @@
 		<?php echo $form->error($model,'domain'); ?>
 	</div>
 
-	<h3>Administration</h3>
+	<h3>Administrator</h3>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'adminLogin'); ?>

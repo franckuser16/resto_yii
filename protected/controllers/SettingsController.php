@@ -48,6 +48,7 @@ class SettingsController extends Controller
 	public function actionUpdate()
 	{
 		$model=new SettingsForm;
+		$adminForm = "";
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -64,6 +65,7 @@ class SettingsController extends Controller
 
 		$this->render('update',array(
 				'model'=>$model,
+				'adminForm'=>$adminForm,
 		));
 	}
 
@@ -73,9 +75,11 @@ class SettingsController extends Controller
 	public function actionIndex()
 	{
 		$model=new SettingsForm;
+		$adminForm = "";
 
 		$this->render('update',array(
 				'model'=>$model,
+				'adminForm'=>$adminForm,
 		));
 	}
 
@@ -85,16 +89,12 @@ class SettingsController extends Controller
 	public function actionAdminSettings()
 	{
 		$model=new SettingsForm;
+		$adminForm = "";
 
-		if(Yii::app()->request->isPostRequest)
+		if(Yii::app()->request->isAjaxRequest)
 		{
-				if(isset($_POST['adminSettingsCheckbox']))
-				{
-						if($model->save(array('params'=>array('administration'=>array('adminSettings'=>$_POST['adminSettingsCheckbox'])))))
-						{
-								$this->redirect('index');
-						}
-				}
+				$adminForm = $this->renderPartial('_adminForm', array('model'=>$model),true, true);
+				$this->renderPartial('_ajaxContent', array('adminForm'=>$adminForm),false, true);
 		}
 		else
 				throw new CHttpException(400,
