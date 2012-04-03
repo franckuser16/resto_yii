@@ -13,7 +13,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'start even if not ready'); ?>
-		<?php echo $form->checkBox($model,'params[drbl][restore][startNotReady]',array('value'=>$model->params['drbl']['restore']['startNotReady'], 'size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->checkBox($model,'params[drbl][restore][startNotReady]',array('value'=>$model->params['drbl']['restore']['startNotReady'])); ?>
 		<?php echo $form->error($model,'start even if not ready'); ?>
 	</div>
 

@@ -27,7 +27,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'auto detect image'); ?>
-		<?php echo $form->checkBox($model,'params[drbl][save][detect]',array('value'=>$model->params['drbl']['save']['detect'], 'size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->checkBox($model,'params[drbl][save][detect]',array('value'=>$model->params['drbl']['save']['detect'])); ?>
 		<?php echo $form->error($model,'detect'); ?>
 	</div>
 
@@ -35,7 +35,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'image name'); ?>
-		<?php echo $form->dropDownList($model,'params[drbl][restore][image]', CHtml::listData(Images::model()->findAll(), 'I_name', 'I_name'), array('empty'=>'select Image')); ?>
+		<?php echo $form->dropDownList($model,'params[drbl][restore][image]', CHtml::listData(Images::model()->findAll(), 'I_name', 'I_name'), array('empty'=>'select image')); ?>
 		<?php echo $form->error($model,'imageName'); ?>
 	</div>
 
@@ -47,13 +47,13 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'wake up before restoration'); ?>
-		<?php echo $form->checkBox($model,'params[drbl][restore][wakeUpBefore]',array('value'=>$model->params['drbl']['restore']['wakeUpBefore'], 'size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->checkBox($model,'params[drbl][restore][wakeUpBefore]',array('value'=>$model->params['drbl']['restore']['wakeUpBefore'])); ?>
 		<?php echo $form->error($model,'wakeUpBefore'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'after restoration'); ?>
-		<?php echo $form->dropDownList($model,'params[drbl][restore][afterRestore]',array('value'=>$model->params['drbl']['restore']['afterRestore'], 'true'=>'true','false'=>'false')); ?>
+		<?php echo $form->dropDownList($model,'params[drbl][restore][afterRestore]',array('empty'=>'select action', 'wakeUP'=>'wake up room','shutdown'=>'shutdown room')); ?>
 		<?php echo $form->error($model,'afterRestore'); ?>
 	</div>
 
@@ -65,7 +65,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'start even if not ready'); ?>
-		<?php echo $form->checkBox($model,'params[drbl][restore][startNotReady]',array('value'=>$model->params['drbl']['restore']['startNotReady'], 'size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->checkBox($model,'params[drbl][restore][startNotReady]',array('value'=>$model->params['drbl']['restore']['startNotReady'])); ?>
 		<?php echo $form->error($model,'start even if not ready'); ?>
 	</div>
 
