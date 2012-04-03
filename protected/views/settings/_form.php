@@ -69,8 +69,12 @@
 		<?php echo $form->error($model,'start even if not ready'); ?>
 	</div>
 
+	<div id="adminSettings">
+			<?php	$this->renderPartial('_ajaxContent', array('adminForm'=>$adminForm)); ?>
+	</div>
+
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Save drbl settings'); ?>
+		<?php echo CHtml::submitButton('Save settings'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

@@ -1,4 +1,4 @@
-<div class="form">
+<!--<div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'settings-adminForm',
@@ -6,8 +6,9 @@
 )); ?>
 
 
-	<?php echo $form->errorSummary($model); ?>
+	<?php echo $form->errorSummary($model); ?> -->
 
+	<h2>Administration</h2>
 
 	<h3>Log</h3>
 
@@ -71,10 +72,10 @@
 		<?php echo $form->error($model,'adminEmail'); ?>
 	</div>
 
-	<div class="row buttons">
+	<!--<div class="row buttons">
 		<?php echo CHtml::submitButton('Save administration settings'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
 
-</div><!-- form -->
+</div>--><!-- form -->
