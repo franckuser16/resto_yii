@@ -13,7 +13,7 @@ class SettingsForm extends CFormModel
 	{
 		parent::__construct();
 		Yii::import('system.vendors.SymfonyComponents.YAML.*');
-		$settings = sfYaml::load(/*Yii::app()->params['basePath'].*/'/home/user/Sites/resto_yii/protected/config/config.yml');
+		$settings = sfYaml::load(Yii::app()->basePath.'/config/config.yml');
 
 		$this->components 	= 	array( 	'db' => array( 	'connectionString' 	=> $settings['components']['db']['connectionString'],
 														'emulatePrepare' 	=> $settings['components']['db']['emulatePrepare'],
@@ -86,7 +86,7 @@ class SettingsForm extends CFormModel
 			//print_r($this->attributes);
 			$dumper = new sfYamlDumper();
 			$yaml = $dumper->dump(CMap::mergeArray($this->attributes, $formSubmission), 4);
-			return file_put_contents('/home/user/Sites/resto_yii/protected/config/config.yml', $yaml);
+			return file_put_contents(Yii::app()->basePath.'/config/config.yml', $yaml);
 	}
 
 }
